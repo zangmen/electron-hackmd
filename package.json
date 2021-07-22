@@ -1,0 +1,27 @@
+{
+  "name": "electron-hackmd",
+  "version": "1.0.0",
+  "description": "this  hackmd unofficial webapp ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron . ",
+    "build_win32": "electron-packager . electron-hackmd --platform=win32 --arch=ia32 --asar --overwrite",
+    "build_win64": "electron-packager . electron-hackmd_win64 --platform=win --arch=x64 --asar --overwrite",
+    "build_linux64": "electron-packager . electron-hackmd_linux64 --platform=linux --arch=x64 --asar --overwrite",
+    "build_linuxarm32": "electron-packager . electron-hackmd  --platform=linux --arch=armv7l --asar --overwrite",
+    "build_linuxarm64": "electron-packager . electron-hackmd --platform=linux --arch=arm64 --asar --overwrite"
+  },
+  "keywords": [
+    "hackmd"
+  ],
+  "author": "zangmen",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^13.1.6"
+  },
+  "dependencies": {
+    "electron-packager": "^15.3.0",
+    "electron-reload": "^1.5.0"
+  }
+}
