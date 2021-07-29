@@ -1,11 +1,9 @@
-const {app,BrowserWindow,webContents} = require('electron');
+const {app,BrowserWindow,webContents,shell} = require('electron');
 const path = require('path')
 const url = require('url')
 const electron = require('electron');
 var notification = require("./module/notification.js");
-notification_status = new notification;
-
-                         
+notification_status = new notification;                      
  
 /* 修改完儲存立即更新*/
 require('electron-reload')(__dirname,{
@@ -24,15 +22,16 @@ function createWindow () {
     /*打開視窗後要運行的動作*/
     webPreferences: {
         sandbox: true , //沙箱機制:啟用
-        webSecurity: true   //安全性功能
+        webSecurity: true ,  //安全性功能
+        minimumFontSize: 17 //最小字体大小
       }  
   })
   mainWindow.loadURL('https://hackmd.io') ;
-  /*控制視窗按扭是否顥示*/
+   /*控制視窗按扭是否顥示*/
   //mainWindow.maximizable = false; //最大化
   //mainWindow.minimizable = false;  //最小化
   //mainWindow.closable = false; //関閉
-  mainWindow.menuBarVisible =  false ;//菜單
+  mainWindow.menuBarVisible =  true;//菜單
 }
 
 app.on('ready', ( ) => {
@@ -56,3 +55,11 @@ app.on('window-all-closed', function () {
   notification_status.close();
 })
 
+/*用外部的瀏覽器打開連結*/
+app.on('web-contents-created', (e, webContents) => {
+    webContents.on('new-window', (event, url) => {
+        event.preventDefault();
+        shell.openExternal(url);
+        notification_status.open_link();
+    });
+});
