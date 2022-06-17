@@ -18,7 +18,7 @@
   "author": "zangmen",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^13.1.6"
+    "electron": "^15.5.5"
   },
   "dependencies": {
     "electron-packager": "^15.3.0",
